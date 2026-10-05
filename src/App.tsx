@@ -33,7 +33,7 @@ const CAR_BRANDS = [
   { name: "Dodge",        logo: "https://www.carlogos.org/car-logos/dodge-logo-download-3840x2160.png" },
 ];
 
-function Button({ children, variant = "primary", className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" | "ghost" }) {
+function Button({ children, variant = "primary", className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" | "ghost" | "accent" }) {
   return <button className={`button button-${variant} ${className}`} {...props}>{children}</button>;
 }
 
@@ -66,7 +66,7 @@ function Splash() {
   </motion.div>}</AnimatePresence>;
 }
 
-function Header({ openEstimate }: { openEstimate: () => void }) {
+function Header() {
   const [mobile, setMobile] = useState(false);
   const links = [["Home", "home"], ["Inventory", "inventory"], ["How It Works", "process"], ["Shipping", "shipping"], ["Reviews", "reviews"], ["FAQ", "faq"], ["Contact", "contact"]];
   return <header className="site-header">
@@ -75,7 +75,7 @@ function Header({ openEstimate }: { openEstimate: () => void }) {
       <nav className="desktop-nav" aria-label="Primary navigation">{links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav>
       <div className="nav-actions">
         <select aria-label="Language and currency" defaultValue="EN-USD"><option value="EN-USD">EN · USD</option><option value="FR-EUR">FR · EUR</option><option value="ES-USD">ES · USD</option></select>
-        <Button onClick={openEstimate}>Get an Estimate</Button>
+        <Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us</Button>
         <button className="menu-button" aria-label="Open menu" onClick={() => setMobile(!mobile)}>{mobile ? <X /> : <Menu />}</button>
       </div>
     </div>
@@ -91,7 +91,7 @@ function SearchPanel() {
   </form>;
 }
 
-function Hero({ openEstimate }: { openEstimate: () => void }) {
+function Hero() {
   const [slide, setSlide] = useState(0);
   useEffect(() => { const id = setInterval(() => setSlide((value) => (value + 1) % heroSlides.length), 6000); return () => clearInterval(id); }, []);
   return <main id="home">
@@ -103,7 +103,7 @@ function Hero({ openEstimate }: { openEstimate: () => void }) {
           <motion.span key={heroSlides[slide].eyebrow} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hero-eyebrow">{heroSlides[slide].eyebrow}</motion.span>
           <h1>Your car.<br />Straight from the USA.</h1>
           <p>We buy, ship and deliver US auction vehicles to over 100 countries.</p>
-          <div className="hero-buttons"><Button onClick={openEstimate}>Get an Estimate <ArrowRight size={17} /></Button><Button variant="secondary" onClick={() => document.querySelector("#inventory")?.scrollIntoView()}>Browse Cars</Button></div>
+          <div className="hero-buttons"><Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us <ArrowRight size={17} /></Button><Button variant="secondary" onClick={() => document.querySelector("#inventory")?.scrollIntoView()}>Browse Cars</Button></div>
         </div>
         <div className="slide-dots">{heroSlides.map((_, i) => <button key={i} aria-label={`View slide ${i + 1}`} className={i === slide ? "active" : ""} onClick={() => setSlide(i)} />)}</div>
       </div>
@@ -121,11 +121,11 @@ function Categories() {
   return <section className="categories shell" aria-label="Browse categories">{categories.map((category, index) => { const Icon = categoryIcons[index]; return <a href="#inventory" key={category}><Icon /><span>{category}</span></a>; })}</section>;
 }
 
-function Process({ openEstimate }: { openEstimate: () => void }) {
+function Process() {
   return <section id="process" className="section warm">
     <div className="shell"><SectionTitle eyebrow="A simpler way to import" title="From first estimate to your port." copy="One expert team coordinates the entire purchase, with clear updates at every milestone." />
       <div className="stepper">{steps.map(([title, copy], index) => <Reveal key={title} className={`step ${index === 0 ? "step-featured" : ""}`}>
-        <div className="step-number">{String(index + 1).padStart(2, "0")}</div><div><h3>{title}</h3><p>{copy}</p>{index === 0 && <Button variant="ghost" onClick={openEstimate}>Start here <ArrowRight size={15} /></Button>}</div>
+        <div className="step-number">{String(index + 1).padStart(2, "0")}</div><div><h3>{title}</h3><p>{copy}</p>{index === 0 && <Button variant="ghost" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Start here <ArrowRight size={15} /></Button>}</div>
       </Reveal>)}</div>
     </div>
   </section>;
@@ -235,27 +235,6 @@ function BrandLogos() {
   </section>;
 }
 
-function EstimateForm({ compact = false }: { compact?: boolean }) {
-  const [step, setStep] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
-  const [price, setPrice] = useState(18000);
-  const fees = Math.round(price * .08);
-  const total = price + fees + 650 + 1450 + 900;
-  const submit = (e: FormEvent) => { e.preventDefault(); if (step < 3) setStep(step + 1); else setSubmitted(true); };
-  if (submitted) return <div className="success-state"><div><BadgeCheck /></div><span className="eyebrow">Request received</span><h3>We will send your estimate within 24 hours.</h3><p>Your vehicle specialist will review availability, shipping routes and current auction fees, then contact you directly.</p></div>;
-  return <form className={`estimate-form ${compact ? "compact" : ""}`} onSubmit={submit}>
-    <div className="form-progress"><span>Step {step} of 3</span><div><i style={{ width: `${step * 33.34}%` }} /></div></div>
-    {step === 1 && <div className="form-fields"><label>Make<input required placeholder="e.g. Lexus" /></label><label>Model<input required placeholder="e.g. RX 350" /></label><label>Year<select><option>2022 or newer</option><option>2019–2021</option><option>2015–2018</option></select></label><label>Budget (USD)<input type="number" value={price} min="3000" onChange={(e) => setPrice(Number(e.target.value))} /></label></div>}
-    {step === 2 && <div className="form-fields"><label>Destination country<select>{countryOptions.map((country) => <option key={country}>{country}</option>)}</select></label><label>Destination port<input required placeholder="e.g. Lagos" /></label><fieldset><legend>Preferred condition</legend><label className="radio"><input type="radio" name="condition" defaultChecked /> Clean title</label><label className="radio"><input type="radio" name="condition" /> Salvage</label></fieldset></div>}
-    {step === 3 && <div className="form-fields"><label>Full name<input required placeholder="Your name" /></label><label>WhatsApp number<input required type="tel" placeholder="+1 000 000 0000" /></label><label>Email address<input required type="email" placeholder="you@email.com" /></label></div>}
-    <div className="form-actions">{step > 1 && <Button type="button" variant="ghost" onClick={() => setStep(step - 1)}><ArrowLeft size={15} /> Back</Button>}<Button type="submit">{step === 3 ? "Request estimate" : "Continue"} <ArrowRight size={15} /></Button></div>
-    {step === 1 && <div className="calculator"><span className="eyebrow">Approximate landed cost</span>{[["Car price", price], ["Auction fees", fees], ["Inland transport", 650], ["Ocean freight", 1450], ["Clearing estimate", 900]].map(([label, value]) => <div key={label}><span>{label}</span><strong>${Number(value).toLocaleString()}</strong></div>)}<div className="calculator-total"><span>Estimated total</span><strong>${total.toLocaleString()}</strong></div><small>Planning estimate only. Duties and route rates vary.</small></div>}
-  </form>;
-}
-
-function EstimateSection() {
-  return <section id="estimate" className="section estimate-section"><div className="shell estimate-layout"><div><SectionTitle eyebrow="Your numbers, before your bid" title="Plan the whole journey—not just the winning price." copy="Tell us what you are looking for. We will match the car, the auction and the best shipping route for your destination." /><ul className="check-list"><li><BadgeCheck /> No obligation</li><li><BadgeCheck /> Itemized fees</li><li><BadgeCheck /> Reply within 24 hours</li></ul></div><EstimateForm /></div></section>;
-}
 
 function Reviews() {
   return <section id="reviews" className="section warm"><div className="shell"><SectionTitle eyebrow="Client stories" title="Trust, delivered." copy="From first-time buyers to established dealers, clear communication makes the difference." />
@@ -269,8 +248,8 @@ function FAQ() {
   return <section id="faq" className="section warm"><div className="shell faq-layout"><SectionTitle eyebrow="Questions, answered" title="Everything you need to know before you bid." copy="Need more detail? Your vehicle specialist is one message away." /><div className="accordion">{topFaqs.map(([question, answer], index) => <div className="faq-item" key={question}><button aria-expanded={open === index} onClick={() => setOpen(open === index ? -1 : index)}><span>{question}</span><ChevronDown className={open === index ? "rotate" : ""} /></button><AnimatePresence initial={false}>{open === index && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}><p>{answer}</p></motion.div>}</AnimatePresence></div>)}</div></div></section>;
 }
 
-function CTA({ openEstimate }: { openEstimate: () => void }) {
-  return <section className="cta-section"><div className="shell"><span className="eyebrow">Start your import</span><h2>Ready to import<br />your next car?</h2><p>A clear estimate is the best place to begin.</p><div><Button onClick={openEstimate}>Get an Estimate <ArrowRight size={17} /></Button><Button variant="secondary"><img src="/whatsapp.svg" alt="WhatsApp" className="whatsapp-icon" style={{ width: "20px", height: "20px" }} /> WhatsApp us</Button></div></div></section>;
+function CTA() {
+  return <section className="cta-section"><div className="shell"><span className="eyebrow">Start your import</span><h2>Ready to import<br />your next car?</h2><p>A clear estimate is the best place to begin.</p><div><Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us <ArrowRight size={17} /></Button><Button variant="secondary"><img src="/whatsapp.svg" alt="WhatsApp" className="whatsapp-icon" style={{ width: "20px", height: "20px" }} /> WhatsApp us</Button></div></div></section>;
 }
 
 function Footer() {
@@ -292,11 +271,11 @@ function Footer() {
 <div className="shell footer-bottom"><span>Copyright © 2007-{new Date().getFullYear()} All Rights Reserved</span></div></footer>;
 }
 
-function FloatingTools({ openEstimate }: { openEstimate: () => void }) {
+function FloatingTools() {
   const [chat, setChat] = useState(false);
   const [top, setTop] = useState(false);
   useEffect(() => { const listener = () => setTop(window.scrollY > 700); window.addEventListener("scroll", listener); return () => window.removeEventListener("scroll", listener); }, []);
-  return <><div className="floating-tools">{top && <button aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ArrowUp /></button>}<a className="whatsapp" href="#contact" aria-label="Contact on WhatsApp"><img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px" }} /></a><button className="chat-toggle" aria-label="Open chat" onClick={() => setChat(!chat)}><Bot /><i /></button></div><AnimatePresence>{chat && <motion.div className="chat-panel" initial={{ opacity: 0, y: 16, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}><div className="chat-head"><div><span className="online-dot" /><strong>Import concierge</strong></div><button onClick={() => setChat(false)} aria-label="Close chat"><X /></button></div><p>Welcome. What can we help you with?</p><button onClick={openEstimate}>Get an estimate <ArrowRight /></button><a href="#shipping">How shipping works <ArrowRight /></a><a href="#contact">Talk to an agent on WhatsApp <ArrowRight /></a></motion.div>}</AnimatePresence></>;
+  return <><div className="floating-tools">{top && <button aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ArrowUp /></button>}<a className="whatsapp" href="#contact" aria-label="Contact on WhatsApp"><img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px" }} /></a><button className="chat-toggle" aria-label="Open chat" onClick={() => setChat(!chat)}><Bot /><i /></button></div><AnimatePresence>{chat && <motion.div className="chat-panel" initial={{ opacity: 0, y: 16, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}><div className="chat-head"><div><span className="online-dot" /><strong>Import concierge</strong></div><button onClick={() => setChat(false)} aria-label="Close chat"><X /></button></div><p>Welcome. What can we help you with?</p><a href="#contact">Contact an agent <ArrowRight /></a><a href="#shipping">How shipping works <ArrowRight /></a><a href="#contact">Talk to an agent on WhatsApp <ArrowRight /></a></motion.div>}</AnimatePresence></>;
 }
 
 function CookieNotice() {
@@ -310,12 +289,7 @@ function NotFound() {
 }
 
 export default function App() {
-  const [modal, setModal] = useState(false);
   const validPath = useMemo(() => window.location.pathname === "/" || window.location.pathname === "", []);
-  useEffect(() => { document.body.style.overflow = modal ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [modal]);
   if (!validPath) return <NotFound />;
-  const openEstimate = () => setModal(true);
-  return <><Splash /><Header openEstimate={openEstimate} /><Hero openEstimate={openEstimate} /><Categories /><Process openEstimate={openEstimate} /><Inventory /><WhyUs /><Shipping /><BrandLogos /><Reviews /><FAQ /><CTA openEstimate={openEstimate} /><Footer /><FloatingTools openEstimate={openEstimate} /><CookieNotice />
-    <AnimatePresence>{modal && <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(e) => { if (e.target === e.currentTarget) setModal(false); }}><motion.div role="dialog" aria-modal="true" aria-label="Get an estimate" className="modal" initial={{ opacity: 0, y: 20, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}><div className="modal-header"><div><span className="eyebrow">Personal import plan</span><h2>Get your estimate.</h2></div><button aria-label="Close estimate form" onClick={() => setModal(false)}><X /></button></div><EstimateForm compact /></motion.div></motion.div>}</AnimatePresence>
-  </>;
+  return <><Splash /><Header /><Hero /><Categories /><Process /><Inventory /><WhyUs /><Shipping /><BrandLogos /><Reviews /><FAQ /><CTA /><Footer /><FloatingTools /><CookieNotice /></>;
 }

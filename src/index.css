@@ -43,6 +43,8 @@ img { display: block; max-width: 100%; }
 .button-secondary { border-color: var(--line); background: white; color: var(--ink); }
 .button-secondary:hover { border-color: var(--gold); }
 .button-ghost { padding-inline: 0; color: var(--gold); background: transparent; }
+.button-accent { color: white; background: #d90429; box-shadow: 0 8px 20px rgba(217, 4, 41, .25); border-color: #d90429; }
+.button-accent:hover { background: #b00322; border-color: #b00322; }
 
 .splash { position: fixed; z-index: 200; inset: 0; display: grid; place-items: center; background: white; }
 .splash-skip { position: absolute; top: 25px; right: 30px; border: 0; background: transparent; color: var(--muted); font-size: 12px; }
@@ -168,31 +170,6 @@ img { display: block; max-width: 100%; }
 .brand-grid a span { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 700; letter-spacing: -.08em; }
 .brand-grid a strong { font-size: 10px; font-weight: 600; }
 
-.estimate-section { background: var(--navy); color: white; }
-.estimate-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: 90px; }
-.estimate-layout .section-heading p { color: rgba(255,255,255,.55); }
-.check-list { padding: 0; display: flex; flex-wrap: wrap; gap: 12px 24px; list-style: none; color: rgba(255,255,255,.7); font-size: 11px; }
-.check-list li { display: flex; align-items: center; gap: 7px; }
-.check-list svg { width: 15px; color: var(--gold); }
-.estimate-form { padding: 38px; border-radius: 20px; background: white; color: var(--ink); box-shadow: var(--shadow); }
-.form-progress { margin-bottom: 30px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.form-progress > div { height: 2px; margin-top: 10px; background: var(--line); }
-.form-progress i { display: block; height: 100%; background: var(--gold); transition: width .35s; }
-.form-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.form-fields label, .form-fields legend { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
-.form-fields input, .form-fields select { width: 100%; height: 52px; margin-top: 7px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: white; color: var(--ink); font-size: 13px; }
-.form-fields fieldset { grid-column: 1 / -1; padding: 16px; border: 1px solid var(--line); border-radius: 10px; }
-.form-fields .radio { margin-right: 25px; color: var(--ink); font-size: 12px; letter-spacing: 0; text-transform: none; }
-.form-fields .radio input { width: auto; height: auto; margin-right: 7px; }
-.form-actions { margin-top: 25px; display: flex; align-items: center; justify-content: flex-end; gap: 20px; }
-.calculator { margin-top: 28px; padding: 22px; border-radius: 12px; background: var(--warm); }
-.calculator > div { padding: 5px 0; display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; }
-.calculator .calculator-total { margin-top: 8px; padding-top: 13px; border-top: 1px solid var(--line); color: var(--ink); font-size: 13px; }
-.calculator small { display: block; margin-top: 10px; color: #999; font-size: 9px; }
-.success-state { min-height: 420px; padding: 50px; border-radius: 20px; display: flex; flex-direction: column; justify-content: center; background: white; color: var(--ink); }
-.success-state > div { width: 52px; height: 52px; margin-bottom: 25px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-soft); color: var(--gold); }
-.success-state h3 { max-width: 500px; font-family: "Cormorant Garamond", serif; font-size: 42px; line-height: 1; }
-.success-state p { color: var(--muted); }
 
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 .review-card { min-height: 330px; padding: 34px; border: 1px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; background: white; }
