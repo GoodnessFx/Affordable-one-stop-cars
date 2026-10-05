@@ -1,0 +1,10 @@
+{
+  "description": "Facilitates seamless purchase and global shipping of US auction cars with transparent pricing, expert support, and real-time estimates for international buyers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
