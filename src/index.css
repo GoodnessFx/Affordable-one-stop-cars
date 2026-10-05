@@ -147,6 +147,7 @@ img { display: block; max-width: 100%; }
 .map-copy h3 { font-family: "Cormorant Garamond", serif; font-size: 34px; line-height: 1; }
 .map-copy p { color: rgba(255,255,255,.5); font-size: 11px; }
 .map-card svg { position: absolute; width: 88%; right: -4%; bottom: -6%; }
+.shipping-map-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
 .land { fill: #1b2b41; stroke: #334259; stroke-width: 1.5; }
 .route { fill: none; stroke: var(--gold); stroke-width: 1.4; stroke-dasharray: 5 5; }
 .port circle { fill: var(--gold); stroke: white; stroke-width: 2; }
@@ -233,7 +234,11 @@ footer { padding-top: 78px; background: var(--navy); color: white; }
 .footer-col strong { margin-bottom: 8px; color: #d6b982; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
 .footer-col a, .footer-col span { color: rgba(255,255,255,.5); font-size: 10px; }
 .footer-col a:hover { color: white; }
-.footer-bottom { margin-top: 70px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; color: rgba(255,255,255,.35); font-size: 9px; }
+.footer-socials-row { margin-top: 60px; display: flex; justify-content: center; gap: 12px; }
+.footer-socials-row a { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,0.4); color: var(--navy); transition: background .25s, transform .2s; }
+.footer-socials-row a:hover { background: white; transform: scale(1.05); }
+.footer-socials-row svg { width: 16px; height: 16px; }
+.footer-bottom { padding: 24px 0; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: center; color: rgba(255,255,255,.35); font-size: 11px; }
 
 .floating-tools { position: fixed; z-index: 40; right: 20px; bottom: 22px; display: flex; flex-direction: column; gap: 9px; }
 .floating-tools > * { width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; background: white; color: var(--navy); box-shadow: 0 10px 30px rgba(15,27,45,.14); }

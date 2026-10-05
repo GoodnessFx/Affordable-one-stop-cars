@@ -140,14 +140,7 @@ function Shipping() {
       <SectionTitle eyebrow="Worldwide shipping network" title="From America’s auction lanes to your nearest port." copy="We consolidate the moving parts—vehicle release, inland trucking, export documents and ocean booking." />
       <div className="map-card">
         <div className="map-copy"><span className="eyebrow">Six US departure hubs</span><h3>Routes built around reliability, not guesswork.</h3><p>Savannah · Baltimore · Houston · New Jersey · Jacksonville · Los Angeles</p></div>
-        <svg viewBox="0 0 1000 470" role="img" aria-label="Stylized world map showing vehicle shipping routes">
-          <path className="land" d="M45 112l88-54 113 18 55 57-32 47-76 8-35 66-55-13-11-52-55-26zm258 211 62-24 41 34-8 83-34 47-32-42-16-55zm181-216 72-37 83 12 44 49-24 41-63-13-18 57-41 37-49-31-27-75zm112 174 42-47 80 20 46 72-26 67-82-6-41-48zm190-169 117 8 55 61-23 62-65 7-31-44-80 2-30-54z" />
-          {[
-            "M170 168 Q370 70 548 185", "M170 168 Q400 260 595 330", "M170 168 Q520 40 735 180",
-            "M170 168 Q640 90 860 215", "M170 168 Q380 410 350 378", "M170 168 Q620 400 700 365",
-          ].map((d, index) => <motion.path key={d} className="route" d={d} initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1.8, delay: index * .12 }} />)}
-          {[[170,168,"USA"], [548,185,"Lagos"], [595,330,"Durban"], [735,180,"Dubai"], [860,215,"Mombasa"], [350,378,"Santos"], [700,365,"Tema"]].map(([x,y,label]) => <g key={label as string} className="port"><circle cx={x} cy={y} r="7" /><text x={Number(x)+12} y={Number(y)+4}>{label}</text></g>)}
-        </svg>
+        <img src="/map.png" alt="Stylized world map showing vehicle shipping routes" className="shipping-map-image" />
       </div>
       <div className="port-list">{ports.map(([city, country, time, code]) => <div key={city}><span className="flag">{code}</span><div><strong>{city}</strong><small>{country}</small></div><span>{time}</span></div>)}</div>
     </div>
@@ -212,12 +205,17 @@ function Footer() {
     ["Legal", "Privacy policy", "Terms of service", "Cookie policy", "Shipping terms"],
   ];
   return <footer id="contact"><div className="shell footer-main"><div className="footer-brand"><a className="wordmark light" href="#home"><span>AOSS</span><strong>Affordable<br />One Stop Shop</strong></a><p>Premium US auction access and vehicle export services for buyers in Nigeria, Ghana, the UAE, UK, Europe and beyond.</p><div className="socials">
-  <a href="https://twitter.com/yourprofile" aria-label="Twitter">Twitter</a>
-  <a href="https://facebook.com/yourpage" aria-label="Facebook">Facebook</a>
-  <a href="https://instagram.com/yourprofile" aria-label="Instagram">Instagram</a>
-  <a href="https://linkedin.com/company/yourcompany" aria-label="LinkedIn">LinkedIn</a>
-  <a href="https://youtube.com/channel/yourchannel" aria-label="YouTube">YouTube</a>
-</div></div>{groups.map(([heading, ...links]) => <div className="footer-col" key={heading}><strong>{heading}</strong>{links.map((link) => <a href="#" key={link}>{link}</a>)}</div>)}<div className="footer-col contact-col"><strong>Contact</strong><a href="tel:+10000000000">+1 (000) 000-0000</a><a href="mailto:hello@affordableonestopshop.com">hello@affordableonestopshop.com</a><span>Mon–Fri · 9am–6pm EST</span><span>USA office address placeholder</span></div></div><div className="shell footer-bottom"><span>© {new Date().getFullYear()} Affordable One Stop Shop. All rights reserved.</span><span>Licensed vehicle exporter · United States</span></div></footer>;
+</div>{groups.map(([heading, ...links]) => <div className="footer-col" key={heading}><strong>{heading}</strong>{links.map((link) => <a href="#" key={link}>{link}</a>)}</div>)}<div className="footer-col contact-col"><strong>Call Center</strong><a href="tel:+10000000000">+1 416.900.3303</a><a href="mailto:help@auctionexport.com">help@auctionexport.com</a><span>Mon-Fri 9:00am-6:00pm EST<br/>Sat 9:00am-4:00pm EST</span></div></div>
+  <div className="footer-socials-row">
+    <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.892-.661 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.838 17.838H6.162V6.162h11.676v11.676zM12 8.76A3.24 3.24 0 1 0 15.24 12 3.244 3.244 0 0 0 12 8.76zm0 5.373a2.133 2.133 0 1 1 2.133-2.133A2.135 2.135 0 0 1 12 14.133zM15.42 7.82a.76.76 0 1 1 .76-.76.76.76 0 0 1-.76.76z"/></svg></a>
+    <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.01 17.44h-2.13l-4.64-6.06-5.34 6.06H2.76l6.47-7.34L3.12 3.86h2.18l4.18 5.46 4.88-5.46h2.15l-6.02 6.83 6.52 6.75zm-3.4-1.39h1.18L7.33 5.12H6.07l9.54 10.93z"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.666 15.86c-.15.564-.596 1.01-1.162 1.16-1.02.274-5.114.274-5.114.274s-4.095 0-5.114-.275a1.643 1.643 0 0 1-1.16-1.16C4.84 14.84 4.84 12 4.84 12s0-2.84.275-3.86a1.643 1.643 0 0 1 1.16-1.16c1.02-.275 5.115-.275 5.115-.275s4.094 0 5.114.275c.566.15 1.012.596 1.162 1.16.274 1.02.274 3.86.274 3.86s0 2.84-.274 3.86zM9.597 14.593v-5.18l4.52 2.59-4.52 2.59z"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm2.766 12h-1.63v6.75h-2.8V12H9.082v-2.38h1.254V8.04c0-1.242.758-1.92 1.868-1.92h1.15v2.29h-.72c-.544 0-.65.258-.65.637v1.18h1.42l-.187 2.38z"/></svg></a>
+    <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1.09 17.65c-.71 0-1.38-.37-1.61-.8l-.44 1.68c-.28 1.06-.82 2.11-1.35 2.81A12.016 12.016 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12c0 5.093 3.167 9.444 7.63 11.23-.09-.94-.17-2.39.04-3.41.19-.93 1.23-5.23 1.23-5.23s-.31-.63-.31-1.55c0-1.45.84-2.54 1.89-2.54.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.49-.24 1.04.52 1.89 1.54 1.89 1.86 0 3.28-1.96 3.28-4.79 0-2.51-1.8-4.26-4.38-4.26-3.01 0-4.78 2.26-4.78 4.59 0 .9.35 1.87.78 2.4.08.1.1.19.07.3l-.25 1.05c-.04.16-.14.2-.31.12-1.15-.54-1.86-2.22-1.86-3.58 0-2.91 2.11-5.58 6.09-5.58 3.21 0 5.71 2.29 5.71 5.34 0 3.19-2.01 5.76-4.8 5.76z"/></svg></a>
+    <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.276 10.743c-.45-.027-.91-.073-1.37-.184a4.57 4.57 0 0 1-1.914-.997v5.617c0 2.257-1.83 4.088-4.087 4.088-2.257 0-4.087-1.83-4.087-4.088 0-2.256 1.83-4.086 4.087-4.086.32 0 .633.037.933.107v2.443c-.29-.07-.604-.108-.933-.108-1.077 0-1.95.873-1.95 1.95 0 1.076.873 1.95 1.95 1.95s1.95-.874 1.95-1.95v-9.525h2.18c.046 1.15.548 2.185 1.345 2.923.633.586 1.464.966 2.386 1.03v2.835z"/></svg></a>
+  </div>
+<div className="shell footer-bottom"><span>Copyright © 2007-{new Date().getFullYear()} All Rights Reserved</span></div></footer>;
 }
 
 function FloatingTools({ openEstimate }: { openEstimate: () => void }) {
