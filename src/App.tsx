@@ -39,7 +39,7 @@ function Splash() {
     <button className="splash-skip" onClick={() => setShow(false)}>Skip</button>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .55 }} className="splash-lockup">
       <strong>Affordable One Stop Shop</strong>
-      <div className="splash-line"><motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: .4, duration: .75 }} /><motion.div initial={{ x: -120, opacity: 0 }} animate={{ x: 120, opacity: 1 }} transition={{ delay: .52, duration: .9 }}><Car size={20} /></motion.div></div>
+      <div className="splash-line"><motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: .4, duration: .75 }} /><motion.div initial={{ x: -120, opacity: 0 }} animate={{ x: 120, opacity: 1 }} transition={{ delay: .52, duration: .9 }}><img src="https://img.icons8.com/3d-fluency/94/car.png" alt="Moving car" style={{ width: "32px", height: "32px", transform: "translateY(-6px)" }} /></motion.div></div>
     </motion.div>
   </motion.div>}</AnimatePresence>;
 }
