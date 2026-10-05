@@ -6,6 +6,9 @@ import {
   X, Zap
 } from "lucide-react";
 import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { benefits, cars, categories, countryOptions, faqs, heroSlides, ports, reviews, steps } from "./data";
 
 const iconMap: Record<string, typeof Gavel> = { Gavel, ReceiptText, ScanSearch, Ship, MessageCircle };
@@ -156,9 +159,60 @@ function WhyUs() {
   </section>;
 }
 
+const PORT_COORDS: Record<string, [number, number]> = {
+  "Lagos":       [6.455, 3.384],
+  "Tema":        [5.618, -0.016],
+  "Abidjan":     [5.345, -4.001],
+  "Mombasa":     [-4.043, 39.668],
+  "Durban":      [-29.858, 31.029],
+  "Jebel Ali":   [24.988, 55.063],
+  "Rotterdam":   [51.919, 4.482],
+  "Bremerhaven": [53.55, 8.576],
+  "Santos":      [-23.967, -46.333],
+  "Kingston":    [17.994, -76.783],
+};
+
+const shipIcon = L.divIcon({
+  className: "",
+  html: `<div style="width:14px;height:14px;border-radius:50%;background:#b08d57;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.45);"></div>`,
+  iconSize: [14, 14],
+  iconAnchor: [7, 7],
+  popupAnchor: [0, -10],
+});
+
 function Shipping() {
   return <section id="shipping" className="section shipping-section">
     <div className="shell">
+      <SectionTitle eyebrow="Worldwide shipping network" title="We deliver to ports across the globe." copy="From the US to your destination port — we handle every leg of the journey." />
+      <div className="shipping-map-wrap">
+        <MapContainer
+          center={[20, 10]}
+          zoom={2}
+          minZoom={2}
+          maxZoom={5}
+          scrollWheelZoom={false}
+          style={{ width: "100%", height: "420px", borderRadius: "16px", zIndex: 1 }}
+          attributionControl={false}
+        >
+          <TileLayer
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            attribution="&copy; OpenStreetMap &copy; CARTO"
+          />
+          {ports.map(([city, country, time]) => {
+            const coords = PORT_COORDS[city as string];
+            if (!coords) return null;
+            return (
+              <Marker key={city as string} position={coords} icon={shipIcon}>
+                <Popup>
+                  <strong style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px" }}>{city as string}</strong><br />
+                  <span style={{ fontSize: "11px", color: "#666" }}>{country as string}</span><br />
+                  <span style={{ fontSize: "11px", color: "#b08d57", fontWeight: 700 }}>{time as string}</span>
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
+      </div>
       <div className="port-list">{ports.map(([city, country, time, code]) => <div key={city}><span className="flag">{code}</span><div><strong>{city}</strong><small>{country}</small></div><span>{time}</span></div>)}</div>
     </div>
   </section>;
@@ -261,7 +315,7 @@ export default function App() {
   useEffect(() => { document.body.style.overflow = modal ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [modal]);
   if (!validPath) return <NotFound />;
   const openEstimate = () => setModal(true);
-  return <><Splash /><Header openEstimate={openEstimate} /><Hero openEstimate={openEstimate} /><Categories /><Process openEstimate={openEstimate} /><Inventory /><WhyUs /><Shipping /><BrandLogos /><EstimateSection /><Reviews /><FAQ /><CTA openEstimate={openEstimate} /><Footer /><FloatingTools openEstimate={openEstimate} /><CookieNotice />
+  return <><Splash /><Header openEstimate={openEstimate} /><Hero openEstimate={openEstimate} /><Categories /><Process openEstimate={openEstimate} /><Inventory /><WhyUs /><Shipping /><BrandLogos /><Reviews /><FAQ /><CTA openEstimate={openEstimate} /><Footer /><FloatingTools openEstimate={openEstimate} /><CookieNotice />
     <AnimatePresence>{modal && <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(e) => { if (e.target === e.currentTarget) setModal(false); }}><motion.div role="dialog" aria-modal="true" aria-label="Get an estimate" className="modal" initial={{ opacity: 0, y: 20, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}><div className="modal-header"><div><span className="eyebrow">Personal import plan</span><h2>Get your estimate.</h2></div><button aria-label="Close estimate form" onClick={() => setModal(false)}><X /></button></div><EstimateForm compact /></motion.div></motion.div>}</AnimatePresence>
   </>;
 }
