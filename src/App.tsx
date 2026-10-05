@@ -3,8 +3,7 @@ import {
   ArrowLeft, ArrowRight, ArrowUp, BadgeCheck, Bot, Camera, Car, ChevronDown, CircleDollarSign,
   FileCheck2, Gauge, Gavel, Globe2, Menu, MessageCircle,
   PackageSearch, Play, ReceiptText, ScanSearch, Search, ShieldCheck, Ship, Sparkles,
-  Send, Video, X, Zap,
-  Twitter, Facebook, Instagram, Linkedin, Youtube
+  Send, Video, X, Zap
 } from "lucide-react";
 import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { benefits, brands, cars, categories, countryOptions, faqs, guides, heroSlides, ports, reviews, steps } from "./data";
@@ -213,11 +212,11 @@ function Footer() {
     ["Legal", "Privacy policy", "Terms of service", "Cookie policy", "Shipping terms"],
   ];
   return <footer id="contact"><div className="shell footer-main"><div className="footer-brand"><a className="wordmark light" href="#home"><span>AOSS</span><strong>Affordable<br />One Stop Shop</strong></a><p>Premium US auction access and vehicle export services for buyers in Nigeria, Ghana, the UAE, UK, Europe and beyond.</p><div className="socials">
-  <a href="https://twitter.com/yourprofile" aria-label="Twitter"><Twitter /></a>
-  <a href="https://facebook.com/yourpage" aria-label="Facebook"><Facebook /></a>
-  <a href="https://instagram.com/yourprofile" aria-label="Instagram"><Instagram /></a>
-  <a href="https://linkedin.com/company/yourcompany" aria-label="LinkedIn"><Linkedin /></a>
-  <a href="https://youtube.com/channel/yourchannel" aria-label="YouTube"><Youtube /></a>
+  <a href="https://twitter.com/yourprofile" aria-label="Twitter">Twitter</a>
+  <a href="https://facebook.com/yourpage" aria-label="Facebook">Facebook</a>
+  <a href="https://instagram.com/yourprofile" aria-label="Instagram">Instagram</a>
+  <a href="https://linkedin.com/company/yourcompany" aria-label="LinkedIn">LinkedIn</a>
+  <a href="https://youtube.com/channel/yourchannel" aria-label="YouTube">YouTube</a>
 </div></div>{groups.map(([heading, ...links]) => <div className="footer-col" key={heading}><strong>{heading}</strong>{links.map((link) => <a href="#" key={link}>{link}</a>)}</div>)}<div className="footer-col contact-col"><strong>Contact</strong><a href="tel:+10000000000">+1 (000) 000-0000</a><a href="mailto:hello@affordableonestopshop.com">hello@affordableonestopshop.com</a><span>Mon–Fri · 9am–6pm EST</span><span>USA office address placeholder</span></div></div><div className="shell footer-bottom"><span>© {new Date().getFullYear()} Affordable One Stop Shop. All rights reserved.</span><span>Licensed vehicle exporter · United States</span></div></footer>;
 }
 
