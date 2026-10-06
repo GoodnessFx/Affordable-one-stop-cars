@@ -6,6 +6,7 @@
   --muted: #6b6b6b;
   --gold: #b08d57;
   --gold-soft: #f1e8d9;
+  --red: #d90429;
   --navy: #0f1b2d;
   --warm: #fafaf8;
   --line: #e8e6e1;
@@ -27,14 +28,17 @@ h1, h2, h3, p { margin-top: 0; }
 h1, h2 { font-family: "Cormorant Garamond", serif; letter-spacing: -.035em; }
 img { display: block; max-width: 100%; }
 .shell { width: min(1280px, calc(100% - 40px)); margin-inline: auto; }
-.section { padding: 72px 0; }
+.section { padding: 48px 0; }
+@media (min-width: 768px) {
+  .section { padding: 72px 0; }
+}
 .warm { background: var(--warm); }
 .center { display: flex; justify-content: center; margin-top: 38px; }
 .eyebrow { display: inline-block; margin-bottom: 14px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-.section-heading { max-width: 660px; margin-bottom: 46px; }
+.section-heading { max-width: 660px; margin-bottom: 34px; }
 .section-heading-center { margin-inline: auto; text-align: center; }
-.section-heading h2 { margin-bottom: 15px; font-size: clamp(42px, 5vw, 68px); line-height: .98; }
-.section-heading p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 16px; }
+.section-heading h2 { margin-bottom: 12px; font-size: clamp(32px, 5vw, 56px); line-height: .98; }
+.section-heading p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 15px; }
 .section-heading-center p { margin-inline: auto; }
 .button { min-height: 46px; padding: 0 21px; border: 1px solid transparent; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-size: 13px; font-weight: 700; transition: transform .25s, background .25s, color .25s, border-color .25s; }
 .button:hover { transform: translateY(-2px); }
@@ -60,7 +64,7 @@ img { display: block; max-width: 100%; }
 .wordmark strong { font-family: "Cormorant Garamond", serif; font-size: 16px; line-height: .92; font-weight: 700; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 29px); }
 .desktop-nav a { position: relative; color: #444; font-size: 12px; white-space: nowrap; }
-.desktop-nav a::after { position: absolute; content: ""; left: 0; right: 100%; bottom: -8px; height: 1px; background: var(--gold); transition: right .25s; }
+.desktop-nav a::after { position: absolute; content: ""; left: 0; right: 100%; bottom: -8px; height: 1px; background: var(--red); transition: right .25s; }
 .desktop-nav a:hover::after { right: 0; }
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 .nav-actions select { border: 0; background: transparent; color: var(--muted); font-size: 11px; }
@@ -102,7 +106,7 @@ img { display: block; max-width: 100%; }
 .stepper { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
 .step { min-height: 220px; padding: 32px; display: flex; gap: 25px; background: white; }
 .step-featured { background: var(--navy); color: white; }
-.step-number { flex: none; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; color: var(--gold); font-size: 11px; }
+.step-number { flex: none; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; color: var(--red); font-size: 11px; }
 .step h3 { margin: 7px 0 8px; font-family: "Cormorant Garamond", serif; font-size: 24px; line-height: 1; }
 .step p { margin-bottom: 0; color: var(--muted); font-size: 12px; }
 .step-featured p { color: rgba(255,255,255,.65); }
@@ -121,7 +125,8 @@ img { display: block; max-width: 100%; }
 .car-image img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
 .car-card:hover img { transform: scale(1.035); }
 .badge { position: absolute; top: 14px; left: 14px; padding: 6px 10px; border-radius: 99px; background: white; color: var(--ink); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.badge-hotoffer, .badge-live { background: var(--gold); color: white; }
+.badge-hotoffer { background: var(--red); color: white; }
+.badge-live { background: var(--gold); color: white; }
 .badge-sold { color: white; background: var(--navy); }
 .car-body { padding: 24px; }
 .sale-type { margin-bottom: 7px; color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
@@ -159,8 +164,8 @@ img { display: block; max-width: 100%; }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .brand-ticker { display: flex; gap: 32px; width: max-content; animation: ticker 30s linear infinite; }
 .brand-ticker:hover { animation-play-state: paused; }
-.brand-ticker-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; width: 110px; cursor: default; filter: grayscale(1); opacity: 0.65; transition: filter .3s, opacity .3s; }
-.brand-ticker-item:hover { filter: none; opacity: 1; }
+.brand-ticker-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; width: 110px; cursor: default; filter: grayscale(1) brightness(1.2); opacity: 0.65; transition: filter .3s, opacity .3s, transform .25s; }
+.brand-ticker-item:hover { filter: none; opacity: 1; transform: translateY(-3px); }
 .brand-ticker-item img { width: 80px; height: 50px; object-fit: contain; }
 .brand-ticker-item span { font-size: 10px; font-weight: 600; color: var(--muted); }
 
@@ -176,7 +181,7 @@ img { display: block; max-width: 100%; }
 .stars { color: var(--gold); font-size: 12px; letter-spacing: .2em; }
 .review-card blockquote { flex: 1; margin: 28px 0 34px; font-family: "Cormorant Garamond", serif; font-size: 23px; line-height: 1.3; }
 .review-card > div:last-child { display: flex; align-items: center; gap: 12px; }
-.review-avatar { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: white; font-size: 10px; }
+.review-avatar { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--red); color: white; font-size: 10px; }
 .review-card p { margin: 0; }
 .review-card p strong, .review-card p small { display: block; }
 .review-card p strong { font-size: 11px; }
@@ -194,8 +199,8 @@ img { display: block; max-width: 100%; }
 .faq-item { border-top: 1px solid var(--line); }
 .faq-item:last-child { border-bottom: 1px solid var(--line); }
 .faq-item > button { width: 100%; padding: 22px 0; border: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: transparent; text-align: left; font-weight: 600; }
-.faq-item button svg { flex: none; width: 17px; color: var(--gold); transition: transform .2s; }
-.faq-item button svg.rotate { transform: rotate(180deg); }
+.faq-item button svg { flex: none; width: 17px; color: var(--gold); transition: transform .2s, color .2s; }
+.faq-item button svg.rotate { transform: rotate(180deg); color: var(--red); }
 .faq-item > div { overflow: hidden; }
 .faq-item p { max-width: 650px; padding: 0 40px 23px 0; margin: 0; color: var(--muted); font-size: 12px; }
 
@@ -205,7 +210,7 @@ img { display: block; max-width: 100%; }
 .cta-section > div > div { margin-top: 30px; display: flex; justify-content: center; gap: 10px; }
 footer { padding-top: 78px; background: var(--navy); color: white; }
 .footer-main { display: grid; grid-template-columns: 1.5fr repeat(5, 1fr); gap: 40px; }
-.wordmark.light span { color: #d6b982; border-color: #d6b982; }
+.wordmark.light span { color: var(--red); border-color: var(--red); }
 .footer-brand p { max-width: 290px; margin-top: 30px; color: rgba(255,255,255,.48); font-size: 11px; }
 .socials { margin-top: 25px; display: flex; gap: 8px; }
 .socials a { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; display: grid; place-items: center; }

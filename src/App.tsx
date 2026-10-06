@@ -15,22 +15,22 @@ const iconMap: Record<string, typeof Gavel> = { Gavel, ReceiptText, ScanSearch, 
 const categoryIcons = [BadgeCheck, PackageSearch, Gavel, Zap, CircleDollarSign, Car, Sparkles];
 
 const CAR_BRANDS = [
-  { name: "Toyota",       logo: "https://www.carlogos.org/car-logos/toyota-logo-2019-3700x1200.png" },
-  { name: "Honda",        logo: "https://www.carlogos.org/car-logos/honda-logo-1700x1150.png" },
-  { name: "Ford",         logo: "https://www.carlogos.org/car-logos/ford-logo-2017-900x374.png" },
-  { name: "Mercedes",     logo: "https://www.carlogos.org/car-logos/mercedes-benz-logo-2011-1920x1080.png" },
-  { name: "BMW",          logo: "https://www.carlogos.org/car-logos/bmw-logo-2020-gray-800x800.png" },
-  { name: "Hyundai",      logo: "https://www.carlogos.org/car-logos/hyundai-logo-2011-download-3840x2160.png" },
-  { name: "Nissan",       logo: "https://www.carlogos.org/car-logos/nissan-logo-2020-black-show.png" },
-  { name: "Lexus",        logo: "https://www.carlogos.org/car-logos/lexus-logo-1988-download-3840x2160.png" },
-  { name: "Chevrolet",    logo: "https://www.carlogos.org/car-logos/chevrolet-logo-2013-700x394.png" },
-  { name: "Volkswagen",   logo: "https://www.carlogos.org/car-logos/volkswagen-logo-2019-show.png" },
-  { name: "Kia",          logo: "https://www.carlogos.org/car-logos/kia-logo-2021-download-2160x1080.png" },
-  { name: "Audi",         logo: "https://www.carlogos.org/car-logos/audi-logo-2016-download-3840x2160.png" },
-  { name: "Jeep",         logo: "https://www.carlogos.org/car-logos/jeep-logo-1993-download-3840x2160.png" },
-  { name: "Land Rover",   logo: "https://www.carlogos.org/car-logos/land-rover-logo-2011-1500x1000.png" },
-  { name: "Tesla",        logo: "https://www.carlogos.org/car-logos/tesla-logo-2007-full-download-3840x2160.png" },
-  { name: "Dodge",        logo: "https://www.carlogos.org/car-logos/dodge-logo-download-3840x2160.png" },
+  { name: "Toyota",       logo: "https://cdn.simpleicons.org/toyota/111" },
+  { name: "Honda",        logo: "https://cdn.simpleicons.org/honda/111" },
+  { name: "Ford",         logo: "https://cdn.simpleicons.org/ford/111" },
+  { name: "Mercedes",     logo: "https://cdn.simpleicons.org/mercedes/111" },
+  { name: "BMW",          logo: "https://cdn.simpleicons.org/bmw/111" },
+  { name: "Hyundai",      logo: "https://cdn.simpleicons.org/hyundai/111" },
+  { name: "Nissan",       logo: "https://cdn.simpleicons.org/nissan/111" },
+  { name: "Lexus",        logo: "https://cdn.simpleicons.org/lexus/111" },
+  { name: "Chevrolet",    logo: "https://cdn.simpleicons.org/chevrolet/111" },
+  { name: "Volkswagen",   logo: "https://cdn.simpleicons.org/volkswagen/111" },
+  { name: "Kia",          logo: "https://cdn.simpleicons.org/kia/111" },
+  { name: "Audi",         logo: "https://cdn.simpleicons.org/audi/111" },
+  { name: "Jeep",         logo: "https://cdn.simpleicons.org/jeep/111" },
+  { name: "Land Rover",   logo: "https://cdn.simpleicons.org/landrover/111" },
+  { name: "Tesla",        logo: "https://cdn.simpleicons.org/tesla/111" },
+  { name: "Dodge",        logo: "https://cdn.simpleicons.org/dodge/111" },
 ];
 
 function Button({ children, variant = "primary", className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" | "ghost" | "accent" }) {
@@ -101,7 +101,7 @@ function Hero() {
         <div className="hero-shade" />
         <div className="hero-content">
           <motion.span key={heroSlides[slide].eyebrow} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hero-eyebrow">{heroSlides[slide].eyebrow}</motion.span>
-          <h1>Your car.<br />Straight from the USA.</h1>
+          <h1>Your car.<br />Straight from the USA<span style={{ color: "var(--red)" }}>.</span></h1>
           <p>We buy, ship and deliver US auction vehicles to over 100 countries.</p>
           <div className="hero-buttons"><Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us <ArrowRight size={17} /></Button><Button variant="secondary" onClick={() => document.querySelector("#inventory")?.scrollIntoView()}>Browse Cars</Button></div>
         </div>
@@ -174,7 +174,7 @@ const PORT_COORDS: Record<string, [number, number]> = {
 
 const shipIcon = L.divIcon({
   className: "",
-  html: `<div style="width:14px;height:14px;border-radius:50%;background:#b08d57;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.45);"></div>`,
+  html: `<div style="width:14px;height:14px;border-radius:50%;background:#d90429;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.45);"></div>`,
   iconSize: [14, 14],
   iconAnchor: [7, 7],
   popupAnchor: [0, -10],
