@@ -154,7 +154,7 @@ function WhyUs() {
       <div className="benefit-track" ref={trackRef}>
         {benefits.map(([icon, title, copy]) => { const Icon = iconMap[icon]; return <div className="benefit-card" key={title}><Icon /><h3>{title}</h3><p>{copy}</p></div>; })}
       </div>
-      <div className="stats">{[["3,200+", "Cars shipped"], ["100+", "Countries served"], ["12", "Years of experience"], ["2,700+", "Happy clients"]].map(([number, label]) => <div key={label}><strong>{number}</strong><span>{label}</span></div>)}</div>
+      <div className="stats">{[["3,200", "+", "Cars shipped"], ["100", "+", "Countries served"], ["12", "", "Years of experience"], ["2,700", "+", "Happy clients"]].map(([number, suffix, label]) => <div key={label}><strong>{number}<em>{suffix}</em></strong><span>{label}</span></div>)}</div>
     </div>
   </section>;
 }
