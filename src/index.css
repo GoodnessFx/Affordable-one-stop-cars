@@ -29,9 +29,9 @@ h1, h2, h3, p { margin-top: 0; }
 h1, h2 { font-family: "Cormorant Garamond", serif; letter-spacing: -.035em; }
 img { display: block; max-width: 100%; }
 .shell { width: min(1280px, calc(100% - 40px)); margin-inline: auto; }
-.section { padding: 28px 0; }
+.section { padding: 16px 0; }
 @media (min-width: 768px) {
-  .section { padding: 40px 0; }
+  .section { padding: 24px 0; }
 }
 .warm { background: var(--warm); }
 .center { display: flex; justify-content: center; margin-top: 20px; }
@@ -111,8 +111,8 @@ img { display: block; max-width: 100%; }
 .stepper { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
 .step { position: relative; min-height: 200px; padding: 28px; display: flex; gap: 20px; background: white; overflow: hidden; }
 .step-featured { background: var(--navy); color: white; }
-.step-ghost { position: absolute; bottom: -15px; right: -5px; font-family: "Cormorant Garamond", serif; font-size: 140px; font-weight: 700; line-height: 1; color: rgba(0,0,0,.04); pointer-events: none; user-select: none; }
-.step-featured .step-ghost { color: rgba(255,255,255,.06); }
+.step-ghost { position: absolute; bottom: -20px; right: -10px; font-family: "Cormorant Garamond", serif; font-size: 180px; font-weight: 700; line-height: 1; color: rgba(0,0,0,.03); pointer-events: none; user-select: none; }
+.step-featured .step-ghost { color: rgba(255,255,255,.04); }
 .step-number { flex: none; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; color: var(--red); font-size: 10px; font-weight: 800; }
 .step-featured .step-number { border-color: rgba(255,255,255,.2); color: var(--red); }
 .step h3 { margin: 6px 0 7px; font-family: "Cormorant Garamond", serif; font-size: 22px; line-height: 1; }
@@ -161,8 +161,8 @@ img { display: block; max-width: 100%; }
 .stats strong em { font-style: normal; color: var(--red); }
 .stats span { margin-top: 4px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 
-.shipping-section { padding: 28px 0; }
-@media (min-width: 768px) { .shipping-section { padding: 40px 0; } }
+.shipping-section { padding: 16px 0; }
+@media (min-width: 768px) { .shipping-section { padding: 24px 0; } }
 .shipping-section .shell { display: flex; flex-direction: column; gap: 20px; }
 .shipping-map-wrap { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
 .port-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
@@ -199,7 +199,7 @@ img { display: block; max-width: 100%; }
 
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .review-card { min-height: 280px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; background: white; position: relative; overflow: hidden; }
-.review-big-quote { position: absolute; top: -10px; right: 16px; font-family: "Cormorant Garamond", serif; font-size: 160px; line-height: 1; color: rgba(217,4,41,.07); pointer-events: none; user-select: none; font-weight: 700; }
+.review-big-quote { position: absolute; top: -15px; right: 10px; font-family: "Cormorant Garamond", serif; font-size: 200px; line-height: 1; color: rgba(217,4,41,.05); pointer-events: none; user-select: none; font-weight: 700; }
 .stars { color: var(--gold); font-size: 11px; letter-spacing: .2em; }
 .review-card blockquote { flex: 1; margin: 18px 0 24px; font-family: "Cormorant Garamond", serif; font-size: 21px; line-height: 1.25; font-style: italic; }
 .review-card > div:last-child { display: flex; align-items: center; gap: 10px; }
@@ -301,8 +301,8 @@ footer { padding-top: 78px; background: var(--navy); color: white; }
 
 @media (max-width: 760px) {
   .shell { width: min(100% - 28px, 1280px); }
-  .section { padding: 18px 0; }
-  .section-heading { margin-bottom: 14px; }
+  .section { padding: 12px 0; }
+  .section-heading { margin-bottom: 10px; }
   .section-heading h2 { font-size: 30px; }
   .nav-wrap { width: calc(100% - 28px); height: 70px; }
   .wordmark span { width: 36px; height: 36px; }
@@ -325,7 +325,7 @@ footer { padding-top: 78px; background: var(--navy); color: white; }
   .categories a:last-child { grid-column: 1 / -1; }
   .stepper { grid-template-columns: 1fr; }
   .step { position: relative; min-height: auto; padding: 22px; }
-  .step-ghost { font-size: 90px; bottom: -10px; }
+  .step-ghost { font-size: 120px; bottom: -15px; }
   .step:not(:last-child)::after { position: absolute; content: ""; left: 40px; bottom: -14px; width: 1px; height: 28px; background: var(--red); z-index: 2; }
   .title-row { align-items: flex-start; }
   .carousel-actions { display: none; }
@@ -344,7 +344,7 @@ footer { padding-top: 78px; background: var(--navy); color: white; }
   .form-fields { grid-template-columns: 1fr; }
   .review-grid { margin-right: -14px; padding-right: 14px; display: grid; grid-auto-flow: column; grid-auto-columns: 88%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .review-card { scroll-snap-align: start; }
-  .review-big-quote { font-size: 100px; }
+  .review-big-quote { font-size: 140px; }
   .guide-grid { grid-template-columns: 1fr; }
   .guide-card img { height: 190px; }
   .cta-section { padding: 44px 0; }
