@@ -100,8 +100,8 @@ function Hero() {
         {heroSlides.map((item, index) => <img key={item.image} src={item.image} alt={item.alt} className={index === slide ? "active" : ""} fetchPriority={index === 0 ? "high" : "auto"} />)}
         <div className="hero-shade" />
         <div className="hero-content">
-          <motion.span key={heroSlides[slide].eyebrow} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hero-eyebrow">{heroSlides[slide].eyebrow}</motion.span>
-          <h1>Your car.<br />Straight from the USA<span style={{ color: "var(--red)" }}>.</span></h1>
+          <motion.span key={heroSlides[slide].eyebrow} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hero-eyebrow"><span className="hero-eyebrow-line" />{heroSlides[slide].eyebrow}</motion.span>
+          <h1>Your car.<br /><em className="hero-outline">Straight</em> from the USA<span style={{ color: "var(--red)" }}>.</span></h1>
           <p>We buy, ship and deliver US auction vehicles to over 100 countries.</p>
           <div className="hero-buttons"><Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us <ArrowRight size={17} /></Button><Button variant="secondary" onClick={() => document.querySelector("#inventory")?.scrollIntoView()}>Browse Cars</Button></div>
         </div>
@@ -125,7 +125,8 @@ function Process() {
   return <section id="process" className="section warm">
     <div className="shell"><SectionTitle eyebrow="A simpler way to import" title="From first estimate to your port." copy="One expert team coordinates the entire purchase, with clear updates at every milestone." />
       <div className="stepper">{steps.map(([title, copy], index) => <Reveal key={title} className={`step ${index === 0 ? "step-featured" : ""}`}>
-        <div className="step-number">{String(index + 1).padStart(2, "0")}</div><div><h3>{title}</h3><p>{copy}</p>{index === 0 && <Button variant="ghost" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Start here <ArrowRight size={15} /></Button>}</div>
+        <div className="step-ghost">{String(index + 1)}</div>
+          <div className="step-number">{String(index + 1).padStart(2, "0")}</div><div><h3>{title}</h3><p>{copy}</p>{index === 0 && <Button variant="ghost" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Start here <ArrowRight size={15} /></Button>}</div>
       </Reveal>)}</div>
     </div>
   </section>;
@@ -152,7 +153,7 @@ function WhyUs() {
     <div className="shell">
       <SectionTitle eyebrow="Why clients stay with us" title="Big logistics. Personal service." copy="Importing a vehicle should feel considered, transparent and calm." align="center" />
       <div className="benefit-track" ref={trackRef}>
-        {benefits.map(([icon, title, copy]) => { const Icon = iconMap[icon]; return <div className="benefit-card" key={title}><Icon /><h3>{title}</h3><p>{copy}</p></div>; })}
+        {benefits.map(([icon, title, copy]) => { const Icon = iconMap[icon]; return <div className="benefit-card" key={title}><Icon /><h3><em>{title}</em></h3><p>{copy}</p></div>; })}
       </div>
       <div className="stats">{[["3,200", "+", "Cars shipped"], ["100", "+", "Countries served"], ["12", "", "Years of experience"], ["2,700", "+", "Happy clients"]].map(([number, suffix, label]) => <div key={label}><strong>{number}<em>{suffix}</em></strong><span>{label}</span></div>)}</div>
     </div>
@@ -220,8 +221,14 @@ function Shipping() {
 
 function BrandLogos() {
   const logos = [...CAR_BRANDS, ...CAR_BRANDS];
-  return <section className="section warm">
-    <div className="shell"><SectionTitle eyebrow="Search by marque" title="Buy cars" align="center" /></div>
+  return <section className="section warm brand-section">
+    <div className="brand-section-header shell">
+      <span className="eyebrow">Search by marque</span>
+      <div className="brand-title-row">
+        <h2>We ship <em>any</em> car.</h2>
+        <div className="brand-slash-group"><span /><span /><span /></div>
+      </div>
+    </div>
     <div className="brand-ticker-wrap">
       <div className="brand-ticker">
         {logos.map((brand, i) => (
@@ -238,7 +245,7 @@ function BrandLogos() {
 
 function Reviews() {
   return <section id="reviews" className="section warm"><div className="shell"><SectionTitle eyebrow="Client stories" title="Trust, delivered." copy="From first-time buyers to established dealers, clear communication makes the difference." />
-    <div className="review-grid">{reviews.map((review) => <article key={review.name} className="review-card"><div className="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>"{review.quote}"</blockquote><div><span className="review-avatar">{review.name.split(" ").map((x) => x[0]).join("")}</span><p><strong>{review.name}</strong><small>{review.flag} {review.country} · {review.date}</small></p></div></article>)}</div>
+    <div className="review-grid">{reviews.map((review) => <article key={review.name} className="review-card"><div className="review-big-quote">&ldquo;</div><div className="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>&ldquo;{review.quote}&rdquo;</blockquote><div><span className="review-avatar">{review.name.split(" ").map((x) => x[0]).join("")}</span><p><strong>{review.name}</strong><small>{review.flag} {review.country} · {review.date}</small></p></div></article>)}</div>
   </div></section>;
 }
 
