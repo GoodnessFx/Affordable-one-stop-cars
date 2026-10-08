@@ -6,9 +6,6 @@ import {
   X, Zap
 } from "lucide-react";
 import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import { benefits, cars, categories, countryOptions, faqs, heroSlides, ports, reviews, steps } from "./data";
 
 const iconMap: Record<string, typeof Gavel> = { Gavel, ReceiptText, ScanSearch, Ship, MessageCircle };
@@ -122,12 +119,24 @@ function Categories() {
 }
 
 function Process() {
-  return <section id="process" className="section warm">
-    <div className="shell"><SectionTitle eyebrow="A simpler way to import" title="From first estimate to your port." copy="One expert team coordinates the entire purchase, with clear updates at every milestone." />
-      <div className="stepper">{steps.map(([title, copy], index) => <Reveal key={title} className={`step ${index === 0 ? "step-featured" : ""}`}>
-        <div className="step-ghost">{String(index + 1)}</div>
-          <div className="step-number">{String(index + 1).padStart(2, "0")}</div><div><h3>{title}</h3><p>{copy}</p>{index === 0 && <Button variant="ghost" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Start here <ArrowRight size={15} /></Button>}</div>
-      </Reveal>)}</div>
+  const orbitImages = [
+    "https://images.unsplash.com/photo-1559038432-900891341900?auto=format&fit=crop&w=600&q=80",
+  ];
+  return <section id="process" className="section warm process-orbit-section">
+    <div className="shell"><SectionTitle align="center" eyebrow="A simpler way to import" title="From first estimate to your port." copy="One expert team coordinates the entire purchase, with clear updates at every milestone." />
+      <div className="orbit">
+        <div className="orbit-ring" aria-hidden="true" />
+        <div className="orbit-center">
+          <img src={orbitImages[0]} alt="Car ready for export" loading="lazy" />
+          <div className="orbit-center-text"><strong>Your import,</strong><span>handled end-to-end</span></div>
+        </div>
+        {steps.map(([title, copy], index) => <Reveal key={title as string} className={`orbit-node orbit-node-${index + 1}`}>
+          <span className="orbit-num">{String(index + 1)}</span>
+          <strong>{title as string}</strong>
+          <small>{copy as string}</small>
+          {index === 0 && <button className="orbit-cta" onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}>Start here <ArrowRight size={12} /></button>}
+        </Reveal>)}
+      </div>
     </div>
   </section>;
 }
@@ -160,60 +169,10 @@ function WhyUs() {
   </section>;
 }
 
-const PORT_COORDS: Record<string, [number, number]> = {
-  "Lagos":       [6.455, 3.384],
-  "Tema":        [5.618, -0.016],
-  "Abidjan":     [5.345, -4.001],
-  "Mombasa":     [-4.043, 39.668],
-  "Durban":      [-29.858, 31.029],
-  "Jebel Ali":   [24.988, 55.063],
-  "Rotterdam":   [51.919, 4.482],
-  "Bremerhaven": [53.55, 8.576],
-  "Santos":      [-23.967, -46.333],
-  "Kingston":    [17.994, -76.783],
-};
-
-const shipIcon = L.divIcon({
-  className: "",
-  html: `<div style="width:14px;height:14px;border-radius:50%;background:#d90429;border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,.45);"></div>`,
-  iconSize: [14, 14],
-  iconAnchor: [7, 7],
-  popupAnchor: [0, -10],
-});
-
 function Shipping() {
   return <section id="shipping" className="section shipping-section">
     <div className="shell">
       <SectionTitle eyebrow="Worldwide shipping network" title="We deliver to ports across the globe." copy="From the US to your destination port — we handle every leg of the journey." />
-      <div className="shipping-map-wrap">
-        <MapContainer
-          center={[20, 10]}
-          zoom={2}
-          minZoom={2}
-          maxZoom={5}
-          scrollWheelZoom={false}
-          style={{ width: "100%", height: "420px", borderRadius: "16px", zIndex: 1 }}
-          attributionControl={false}
-        >
-          <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            attribution="&copy; OpenStreetMap &copy; CARTO"
-          />
-          {ports.map(([city, country, time]) => {
-            const coords = PORT_COORDS[city as string];
-            if (!coords) return null;
-            return (
-              <Marker key={city as string} position={coords} icon={shipIcon}>
-                <Popup>
-                  <strong style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px" }}>{city as string}</strong><br />
-                  <span style={{ fontSize: "11px", color: "#666" }}>{country as string}</span><br />
-                  <span style={{ fontSize: "11px", color: "#b08d57", fontWeight: 700 }}>{time as string}</span>
-                </Popup>
-              </Marker>
-            );
-          })}
-        </MapContainer>
-      </div>
       <div className="port-list">{ports.map(([city, country, time, code]) => <div key={city}><span className="flag">{code}</span><div><strong>{city}</strong><small>{country}</small></div><span>{time}</span></div>)}</div>
     </div>
   </section>;
