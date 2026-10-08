@@ -215,7 +215,7 @@ function FAQ() {
 }
 
 function CTA() {
-  return <section className="cta-section"><div className="shell"><span className="eyebrow">Start your import</span><h2>Ready to import<br />your next car?</h2><p>A clear estimate is the best place to begin.</p><div><Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us <ArrowRight size={17} /></Button><Button variant="secondary"><img src="/whatsapp.svg" alt="WhatsApp" className="whatsapp-icon" style={{ width: "20px", height: "20px" }} /> WhatsApp us</Button></div></div></section>;
+  return <section className="cta-section"><div className="shell"><span className="eyebrow">Start your import</span><h2>Ready to import<br />your next car?</h2><p>A clear estimate is the best place to begin.</p><div><Button variant="accent" onClick={() => document.querySelector("#contact")?.scrollIntoView()}>Contact Us <ArrowRight size={17} /></Button><Button variant="secondary"><img src="/whatsapp.svg" alt="WhatsApp" className="whatsapp-icon" /> WhatsApp us</Button></div></div></section>;
 }
 
 function Footer() {
@@ -241,7 +241,7 @@ function FloatingTools() {
   const [chat, setChat] = useState(false);
   const [top, setTop] = useState(false);
   useEffect(() => { const listener = () => setTop(window.scrollY > 700); window.addEventListener("scroll", listener); return () => window.removeEventListener("scroll", listener); }, []);
-  return <><div className="floating-tools">{top && <button aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ArrowUp /></button>}<a className="whatsapp" href="#contact" aria-label="Contact on WhatsApp"><img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px" }} /></a><button className="chat-toggle" aria-label="Open chat" onClick={() => setChat(!chat)}><Bot /><i /></button></div><AnimatePresence>{chat && <motion.div className="chat-panel" initial={{ opacity: 0, y: 16, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}><div className="chat-head"><div><span className="online-dot" /><strong>Import concierge</strong></div><button onClick={() => setChat(false)} aria-label="Close chat"><X /></button></div><p>Welcome. What can we help you with?</p><a href="#contact">Contact an agent <ArrowRight /></a><a href="#shipping">How shipping works <ArrowRight /></a><a href="#contact">Talk to an agent on WhatsApp <ArrowRight /></a></motion.div>}</AnimatePresence></>;
+  return <><div className="floating-tools">{top && <button aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ArrowUp /></button>}<a className="whatsapp" href="#contact" aria-label="Contact on WhatsApp"><img src="/whatsapp.svg" alt="WhatsApp" /></a><button className="chat-toggle" aria-label="Open chat" onClick={() => setChat(!chat)}><Bot /><i /></button></div><AnimatePresence>{chat && <motion.div className="chat-panel" initial={{ opacity: 0, y: 16, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}><div className="chat-head"><div><span className="online-dot" /><strong>Import concierge</strong></div><button onClick={() => setChat(false)} aria-label="Close chat"><X /></button></div><p>Welcome. What can we help you with?</p><a href="#contact">Contact an agent <ArrowRight /></a><a href="#shipping">How shipping works <ArrowRight /></a><a href="#contact">Talk to an agent on WhatsApp <ArrowRight /></a></motion.div>}</AnimatePresence></>;
 }
 
 function CookieNotice() {

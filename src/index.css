@@ -18,7 +18,6 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); background: var(--white); font-family: "Manrope", sans-serif; font-size: 15px; line-height: 1.6; }
-body::before { content: ""; position: fixed; top: 0; left: 0; width: 3px; height: 100vh; background: var(--red); z-index: 9999; pointer-events: none; }
 body, button, input, select { font-family: "Manrope", sans-serif; }
 button, a, input, select { outline-offset: 3px; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--gold); }
@@ -254,9 +253,7 @@ img { display: block; max-width: 100%; }
 .faq-item > div { overflow: hidden; }
 .faq-item p { max-width: 650px; padding: 0 40px 23px 0; margin: 0; color: var(--muted); font-size: 12px; }
 
-.cta-section { padding: 56px 0; text-align: center; background: var(--navy); color: white; position: relative; overflow: hidden; }
-.cta-section::before { content: ""; position: absolute; top: -40px; left: -60px; width: 260px; height: 260px; border-radius: 50%; background: rgba(217,4,41,.12); pointer-events: none; }
-.cta-section::after { content: ""; position: absolute; bottom: -60px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(217,4,41,.08); pointer-events: none; }
+.cta-section { padding: 56px 0; text-align: center; background: radial-gradient(900px 380px at 50% -10%, rgba(176,141,87,.22), transparent 60%), var(--navy); color: white; position: relative; overflow: hidden; }
 .cta-section .eyebrow { color: var(--red); }
 .cta-section h2 { margin-bottom: 12px; color: white; font-size: clamp(44px, 8vw, 90px); line-height: .82; }
 .cta-section p { color: rgba(255,255,255,.5); }
@@ -284,9 +281,12 @@ footer { padding-top: 78px; background: var(--navy); color: white; }
 .whatsapp-icon {
   width: 20px;
   height: 20px;
-  filter: drop-shadow(0 0 4px #25D366);
+  flex: none;
+  border-radius: 50%;
 }
-.floating-tools .whatsapp { color: white; border-color: #1f9d63; background: #1f9d63; }
+.floating-tools .whatsapp { color: white; border: 0; background: #25D366; box-shadow: 0 10px 26px rgba(37,211,102,.45); transition: transform .2s; }
+.floating-tools .whatsapp:hover { transform: translateY(-2px) scale(1.04); }
+.floating-tools .whatsapp img { width: 26px; height: 26px; border-radius: 50%; }
 
 .chat-toggle { position: relative; }
 .chat-toggle i { position: absolute; top: 2px; right: 1px; width: 10px; height: 10px; border: 2px solid white; border-radius: 50%; background: var(--gold); }
