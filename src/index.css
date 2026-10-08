@@ -140,11 +140,23 @@ img { display: block; max-width: 100%; }
 .orbit-node-6 .orbit-num { background: #bfe0ff; color: #0f1b2d; }
 .orbit-cta { margin-top: 8px; border: 0; background: transparent; color: var(--gold); font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; }
 @media (max-width: 760px) {
-  .orbit { aspect-ratio: auto; display: grid; gap: 18px; }
-  .orbit-ring { display: none; }
-  .orbit-center { position: relative; top: auto; left: auto; transform: none; width: 230px; margin: 0 auto; }
-  .orbit-node, .orbit-node-1, .orbit-node-4 { position: relative !important; top: auto; left: auto; right: auto; bottom: auto; transform: none; width: 100%; }
-  .orbit-num { margin-top: 0; }
+  .orbit { aspect-ratio: auto; width: 100%; max-width: 430px; height: 590px; margin: 16px auto 0; }
+  .orbit-ring { inset: 9% 5%; }
+  .orbit-center { width: 164px; border-width: 6px; }
+  .orbit-center-text { padding: 22px 8px 10px; }
+  .orbit-center-text strong { font-size: 19px; }
+  .orbit-center-text span { font-size: 9px; }
+  .orbit-node { width: 128px; padding: 10px 8px 9px; }
+  .orbit-node strong { font-size: 13px; margin: 4px 0 2px; }
+  .orbit-node small { font-size: 8px; line-height: 1.4; }
+  .orbit-num { width: 22px; height: 22px; margin: -21px auto 0; font-size: 10px; border-width: 2px; }
+  .orbit-node-1 { top: 0; left: 50%; right: auto; bottom: auto; transform: translateX(-50%); }
+  .orbit-node-2 { top: 21%; right: -2px; left: auto; bottom: auto; }
+  .orbit-node-3 { bottom: 21%; right: -2px; left: auto; top: auto; }
+  .orbit-node-4 { bottom: 0; left: 50%; right: auto; top: auto; transform: translateX(-50%); }
+  .orbit-node-5 { bottom: 21%; left: -2px; right: auto; top: auto; }
+  .orbit-node-6 { top: 21%; left: -2px; right: auto; bottom: auto; }
+  .orbit-cta { font-size: 9px; margin-top: 4px; }
 }
 
 .title-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
